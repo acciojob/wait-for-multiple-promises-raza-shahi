@@ -32,7 +32,7 @@ Promise.all([promise1,promise2,promise3]).then((res)=>{
         const nameCell = document.createElement("td");
         const delayCell = document.createElement("td");
         nameCell.textContent = item.name;
-        delayCell.textContent = item.delay / 1000 + "s";
+        delayCell.textContent = item.delay / 1000 ;
         let total = item.delay / 1000;
         row.appendChild(nameCell);
         row.appendChild(delayCell);
@@ -43,7 +43,7 @@ Promise.all([promise1,promise2,promise3]).then((res)=>{
     const totalCell = document.createElement("td");
     const totalDelayCell = document.createElement("td");
     totalCell.textContent = "Total";
-    totalDelayCell.textContent = totalDelay + "s";
+    totalDelayCell.textContent = totalDelay.toFixed(3);
     totalRow.appendChild(totalCell);
     totalRow.appendChild(totalDelayCell);
     tableBody.appendChild(totalRow);
