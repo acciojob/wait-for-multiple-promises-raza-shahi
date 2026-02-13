@@ -24,26 +24,25 @@ let promise3 = new Promise((resolve) => {
   }, delay);
 });
 
-Promise.all([promise1,promise2,promise3]).then((res)=>{
+Promise.all([promise1,promise2,promise3]).then((result)=>{
     const tableBody = document.getElementById("output");
     tableBody.innerHTML = "";
-    res.forEach((item) => {
+    result.forEach((item) => {
         const row = document.createElement("tr");
         const nameCell = document.createElement("td");
         const delayCell = document.createElement("td");
         nameCell.textContent = item.name;
         delayCell.textContent = item.delay / 1000 ;
-        let total = item.delay / 1000;
         row.appendChild(nameCell);
         row.appendChild(delayCell);
         tableBody.appendChild(row);
     });
-    const totalDelay = res.reduce((sum, item) => sum + item.delay / 1000, 0);
+    const maxTime = Math.max(...result.map(item=>item.delay))/1000;
     const totalRow = document.createElement("tr");
     const totalCell = document.createElement("td");
     const totalDelayCell = document.createElement("td");
     totalCell.textContent = "Total";
-    totalDelayCell.textContent = totalDelay.toFixed(3);
+    totalDelayCell.textContent = maxTime.toFixed(3);
     totalRow.appendChild(totalCell);
     totalRow.appendChild(totalDelayCell);
     tableBody.appendChild(totalRow);
